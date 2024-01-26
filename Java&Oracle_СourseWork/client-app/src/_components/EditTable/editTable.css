@@ -1,0 +1,13 @@
+.data-guard {
+    font-size: 1.1em;
+    font-weight: 600;
+    height: 70vh;
+}
+
+.grid-buttons-container {
+    display: grid;
+    grid-template-columns: repeat(4, 200px);
+    column-gap: 20px;
+    height: 10px;
+    justify-content: right;
+}

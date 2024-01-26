@@ -1,0 +1,69 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Student.StudentLecturesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:studentVm="clr-namespace:DistanceLearningSystem.ViewModels.StudentVM"
+      xmlns:moonPdfLib="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+      mc:Ignorable="d"
+      Title="StudentLecturesPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Page.DataContext>
+        <studentVm:StudentLecturesViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="ListLecturesStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <moonPdfLib:MoonPdfPanel Grid.Column="0" x:Name="MoonPdfPanel" Background="{DynamicResource GridBrush}"
+                                 ViewType="SinglePage"  Opacity="{Binding MoonPdfOpacity,UpdateSourceTrigger=PropertyChanged}" 
+                                 PageRowDisplay="ContinuousPageRows" PageMargin="0,0,4,2" AllowDrop="True" />
+        <ListBox Grid.Column="1" BorderBrush="{x:Null}" Background="{DynamicResource GridBrush}" x:Name="ListBox2"
+                 ItemsSource="{Binding Lectures}" Style="{StaticResource List}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }"
+                                Background="Transparent"
+                                Orientation="Horizontal" Width="300" Height="120">
+                        <StackPanel.InputBindings>
+                            <MouseBinding
+                                Command="{Binding ElementName=ListBox2, Path=DataContext.OpenLectureCommand}"
+                                CommandParameter="{Binding}"
+                                MouseAction="LeftDoubleClick" />
+                        </StackPanel.InputBindings>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Column="0" Source="{DynamicResource LectureIcon}" Width="40" Height="40"
+                                   Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" />
+                            <StackPanel Grid.Column="1">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Title}"
+                                               Style="{StaticResource ListLecturesStyle}" />
+                                    <TextBlock Text="{Binding  Path=Name}" Width="140"
+                                               Style="{StaticResource ListLecturesStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Description}"
+                                               Style="{StaticResource ListLecturesStyle}" />
+                                    <TextBlock Text="{Binding  Path=Description}" Width="140"
+                                               Style="{StaticResource ListLecturesStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

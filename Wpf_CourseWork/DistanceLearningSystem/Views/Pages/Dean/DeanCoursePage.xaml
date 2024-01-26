@@ -1,0 +1,31 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Dean.DeanCoursePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:deanVm="clr-namespace:DistanceLearningSystem.ViewModels.DeanVM"
+      mc:Ignorable="d"
+      Title="DeanCoursePage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Page.DataContext>
+        <deanVm:DeanCourseViewModel />
+    </Page.DataContext>
+    <Grid Background="{DynamicResource GridBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="{DynamicResource GridBrush}">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button Content="{DynamicResource Specialities}" Background="{DynamicResource ButtonBrush}"
+                        FontSize="16" Foreground="{DynamicResource TextBrush}"
+                        FontStyle="Italic" FontWeight="Bold" Margin="5,0,0,0"
+                        BorderBrush="{x:Null}" Command="{Binding OpenSpecialitiesCommand}" />
+                <Button Content="{DynamicResource Subjects}" Background="{DynamicResource ButtonBrush}"
+                        FontSize="16" Foreground="{DynamicResource TextBrush}"
+                        FontStyle="Italic" FontWeight="Bold"
+                        BorderBrush="{x:Null}" Command="{Binding OpenSubjectsCommand}" />
+            </StackPanel>
+        </Grid>
+        <Frame Grid.Row="1" x:Name="Frame" NavigationUIVisibility="Hidden" />
+    </Grid>
+</Page>

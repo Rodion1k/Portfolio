@@ -1,0 +1,58 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="GridStyle" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="#04293A" />
+    </Style>
+    <Style x:Key="TopToolBarStyle" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="Black"/>
+    </Style>
+  <Style x:Key="ExitButton" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="Red" />
+                                <!-- TODO сделать как в gamestore стиль поведения и в темах менять только цвет -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    <Style x:Key="ImageButton" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Gray" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <SolidColorBrush x:Key="HighPanelBrush" Color="#272727"/>
+    <SolidColorBrush x:Key="GridBrush" Color="#343434"/>
+    <SolidColorBrush x:Key="ButtonBrush" Color="#302F40"/>
+    <SolidColorBrush x:Key="TextBrush" Color="White"/>
+    <SolidColorBrush x:Key="CardBrush" Color="#414141"/>
+    <SolidColorBrush x:Key="ListboxBrush" Color="#414141"/>
+    <SolidColorBrush x:Key="SelectedItemBrush" Color="#622121"/>
+    <SolidColorBrush x:Key="BorderBrush" Color="#5c2626"/>
+    <SolidColorBrush x:Key="PolygonBrush" Color="#a3a3a3"/>
+    <SolidColorBrush x:Key="ErrorBrush" Color="#cb1c1c"/>
+    <Color x:Key="GradientColorFirst">#414141</Color>
+    <Color x:Key="GradientColorSecond">#343434</Color>
+</ResourceDictionary>

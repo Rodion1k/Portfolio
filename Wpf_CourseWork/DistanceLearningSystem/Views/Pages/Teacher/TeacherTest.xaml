@@ -1,0 +1,82 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Teacher.TeacherTest"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:teacherVm="clr-namespace:DistanceLearningSystem.ViewModels.TeacherVM"
+      mc:Ignorable="d"
+      Title="TeacherTest" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Page.DataContext>
+        <teacherVm:TeacherTestViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="ListTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </Page.Resources>
+    <Grid Background="{DynamicResource GridBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBox Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         FontSize="22" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" Width="400" Height="44" Style="{StaticResource SearchTextBox}" />
+            </Grid>
+            <ListBox Grid.Row="1" x:Name="ListBox" Background="{DynamicResource GridBrush}"
+                     ItemsSource="{Binding Path=TestResultsList}"
+                     Style="{StaticResource List}" BorderBrush="{x:Null}" FontSize="21"
+                     Foreground="{DynamicResource TextBrush}"
+                     Margin="0,0,30,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }"
+                                    Orientation="Vertical" Width="400" Height="370">
+                            <Ellipse Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                     Height="130">
+                                <Ellipse.Fill>
+                                    <ImageBrush
+                                        ImageSource="{Binding ImagePath}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Name}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=SurName}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Patronymic}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource GroupNumberHint}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=GroupNumber}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Mark}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Result}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Page>

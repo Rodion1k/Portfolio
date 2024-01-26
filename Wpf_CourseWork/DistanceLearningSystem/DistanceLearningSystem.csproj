@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{FC66BD6A-FAD9-4985-96A0-E16374606284}</ProjectGuid>
+        <OutputType>WinExe</OutputType>
+        <RootNamespace>DistanceLearningSystem</RootNamespace>
+        <AssemblyName>DistanceLearningSystem</AssemblyName>
+        <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+        <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+        <WarningLevel>4</WarningLevel>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>x64</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+        <Prefer32bit>false</Prefer32bit>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+          <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="MaterialDesignColors, Version=2.0.6.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a">
+          <HintPath>..\packages\MaterialDesignColors.2.0.6-ci156\lib\net452\MaterialDesignColors.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="MaterialDesignThemes.Wpf, Version=4.5.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a">
+          <HintPath>..\packages\MaterialDesignThemes.4.5.0-ci156\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+          <Private>True</Private>
+        </Reference>
+        <Reference Include="MoonPdfLib, Version=0.3.0.0, Culture=neutral, PublicKeyToken=null">
+          <HintPath>bin\Debug\MoonPdfLib.dll</HintPath>
+        </Reference>
+        <Reference Include="System" />
+        <Reference Include="System.ComponentModel.DataAnnotations" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.ServiceModel" />
+        <Reference Include="System.Xml" />
+        <Reference Include="System.Xaml">
+            <RequiredTargetFramework>4.0</RequiredTargetFramework>
+        </Reference>
+        <Reference Include="WindowsBase" />
+        <Reference Include="PresentationCore" />
+        <Reference Include="PresentationFramework" />
+    </ItemGroup>
+    <ItemGroup>
+        <ApplicationDefinition Include="App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <SubType>Designer</SubType>
+        </ApplicationDefinition>
+        <Compile Include="Animations\ScaleGridAnimation.cs" />
+        <Compile Include="Commands\RelayCommand.cs" />
+        <Compile Include="DataBase\Context\AppDbContext.cs" />
+        <Compile Include="DataBase\Repository\GenericRepository.cs" />
+        <Compile Include="DataBase\Repository\IRepository.cs" />
+        <Compile Include="DataBase\UnitOfWork\UnitOfWork.cs" />
+        <Compile Include="EmailSender\EmailSender.cs" />
+        <Compile Include="Encryptor\Encryptor.cs" />
+        <Compile Include="Migrations\202205031536559_AddImagePath.cs" />
+        <Compile Include="Migrations\202205031536559_AddImagePath.Designer.cs">
+          <DependentUpon>202205031536559_AddImagePath.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205052049591_AddManyToMany.cs" />
+        <Compile Include="Migrations\202205052049591_AddManyToMany.Designer.cs">
+          <DependentUpon>202205052049591_AddManyToMany.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205072117010_AddId.cs" />
+        <Compile Include="Migrations\202205072117010_AddId.Designer.cs">
+          <DependentUpon>202205072117010_AddId.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205072120567_fsd.cs" />
+        <Compile Include="Migrations\202205072120567_fsd.Designer.cs">
+          <DependentUpon>202205072120567_fsd.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205080959306_GroupId.cs" />
+        <Compile Include="Migrations\202205080959306_GroupId.Designer.cs">
+          <DependentUpon>202205080959306_GroupId.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205081046117_AddId1.cs" />
+        <Compile Include="Migrations\202205081046117_AddId1.Designer.cs">
+          <DependentUpon>202205081046117_AddId1.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205081447135_FacultyUser.cs" />
+        <Compile Include="Migrations\202205081447135_FacultyUser.Designer.cs">
+          <DependentUpon>202205081447135_FacultyUser.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205081917051_addmanitomani.cs" />
+        <Compile Include="Migrations\202205081917051_addmanitomani.Designer.cs">
+          <DependentUpon>202205081917051_addmanitomani.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205082032200_aES.cs" />
+        <Compile Include="Migrations\202205082032200_aES.Designer.cs">
+          <DependentUpon>202205082032200_aES.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205082044137_aeSfzd.cs" />
+        <Compile Include="Migrations\202205082044137_aeSfzd.Designer.cs">
+          <DependentUpon>202205082044137_aeSfzd.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205091656569_AddNumCursesToFaculty.cs" />
+        <Compile Include="Migrations\202205091656569_AddNumCursesToFaculty.Designer.cs">
+          <DependentUpon>202205091656569_AddNumCursesToFaculty.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205092010337_ManiToManiSubjectUser.cs" />
+        <Compile Include="Migrations\202205092010337_ManiToManiSubjectUser.Designer.cs">
+          <DependentUpon>202205092010337_ManiToManiSubjectUser.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205110835116_AddLectures.cs" />
+        <Compile Include="Migrations\202205110835116_AddLectures.Designer.cs">
+          <DependentUpon>202205110835116_AddLectures.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205110849355_UpdateLecture.cs" />
+        <Compile Include="Migrations\202205110849355_UpdateLecture.Designer.cs">
+          <DependentUpon>202205110849355_UpdateLecture.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205111406003_GuidIdTOFac.cs" />
+        <Compile Include="Migrations\202205111406003_GuidIdTOFac.Designer.cs">
+          <DependentUpon>202205111406003_GuidIdTOFac.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205112240048_AddIdToSubjSpec.cs" />
+        <Compile Include="Migrations\202205112240048_AddIdToSubjSpec.Designer.cs">
+          <DependentUpon>202205112240048_AddIdToSubjSpec.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205120034523_AddTestToBd.cs" />
+        <Compile Include="Migrations\202205120034523_AddTestToBd.Designer.cs">
+          <DependentUpon>202205120034523_AddTestToBd.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\202205130047366_Test.cs" />
+        <Compile Include="Migrations\202205130047366_Test.Designer.cs">
+          <DependentUpon>202205130047366_Test.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Migrations\Configuration.cs" />
+        <Compile Include="Models\Account.cs" />
+        <Compile Include="Models\Answer.cs" />
+        <Compile Include="Models\CustomModels\CustomAnswer.cs" />
+        <Compile Include="Models\CustomModels\CustomFaculty.cs" />
+        <Compile Include="Models\CustomModels\CustomLecture.cs" />
+        <Compile Include="Models\CustomModels\CustomQuestion.cs" />
+        <Compile Include="Models\CustomModels\CustomSubject.cs" />
+        <Compile Include="Models\CustomModels\CustomTest.cs" />
+        <Compile Include="Models\CustomModels\CustomTestResult.cs" />
+        <Compile Include="Models\CustomModels\CustomUserProfile.cs" />
+        <Compile Include="Models\Faculty.cs" />
+        <Compile Include="Models\Group.cs" />
+        <Compile Include="Models\Lecture.cs" />
+        <Compile Include="Models\Media.cs" />
+        <Compile Include="Models\Question.cs" />
+        <Compile Include="Models\Speciality.cs" />
+        <Compile Include="Models\Subject.cs" />
+        <Compile Include="Models\SubjectSpecialities.cs" />
+        <Compile Include="Models\SubjectsUserProfiles.cs" />
+        <Compile Include="Models\Test.cs" />
+        <Compile Include="Models\TestResult.cs" />
+        <Compile Include="Models\UserLogin.cs" />
+        <Compile Include="Models\UserProfile.cs" />
+        <Compile Include="Navigation\MainNavigation.cs" />
+        <Compile Include="UndoRedo\UndoRedoManager.cs" />
+        <Compile Include="Validation\ValidationEmailRule.cs" />
+        <Compile Include="Validation\ValidationFacultyRule.cs" />
+        <Compile Include="Validation\ValidationInitialsRule.cs" />
+        <Compile Include="Validation\ValidationNumericRule.cs" />
+        <Compile Include="Validation\ValidationPasswordRule.cs" />
+        <Compile Include="ViewModels\AdminVM\AdminDbVM.cs" />
+        <Compile Include="ViewModels\AdminVM\AdminTeachersVM.cs" />
+        <Compile Include="ViewModels\AdminVM\AdminUsersVM.cs" />
+        <Compile Include="ViewModels\AdminVM\AdminFacultyVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanCourseVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanCursesVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanGroupsVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanSpecialityVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanStudentsVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanSubjectsVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanSubjectVM.cs" />
+        <Compile Include="ViewModels\DeanVM\DeanTeachersVM.cs" />
+        <Compile Include="ViewModels\MainVM\AuthorizationWindowVM.cs" />
+        <Compile Include="ViewModels\MainVM\MainWindowVM.cs" />
+        <Compile Include="ViewModels\MainVM\ViewModelBase.cs" />
+        <Compile Include="ViewModels\StudentVM\StudentLecturesVM.cs" />
+        <Compile Include="ViewModels\StudentVM\StudentSubjectsVM.cs" />
+        <Compile Include="ViewModels\StudentVM\StudentSubjectVM.cs" />
+        <Compile Include="ViewModels\StudentVM\StudentTestsVM.cs" />
+        <Compile Include="ViewModels\StudentVM\StudentTestVM.cs" />
+        <Compile Include="ViewModels\TeacherVM\TeacherLecturesVM.cs" />
+        <Compile Include="ViewModels\TeacherVM\TeacherSubjectsVM.cs" />
+        <Compile Include="ViewModels\TeacherVM\TeacherSubjectVM.cs" />
+        <Compile Include="ViewModels\TeacherVM\TeacherTestsVM.cs" />
+        <Compile Include="ViewModels\TeacherVM\TeacherTestVM.cs" />
+        <Compile Include="Views\AuthorizationWindow.xaml.cs">
+          <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="App.xaml.cs">
+            <DependentUpon>App.xaml</DependentUpon>
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Views\MainWindow.xaml.cs">
+          <DependentUpon>MainWindow.xaml</DependentUpon>
+          <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Views\Pages\Admin\AdminPage.xaml.cs">
+          <DependentUpon>AdminPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Admin\AdminTeachersPage.xaml.cs">
+          <DependentUpon>AdminTeachersPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Admin\DataBaseDataGrid.xaml.cs">
+          <DependentUpon>DataBaseDataGrid.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Admin\DeansDataGrid.xaml.cs">
+          <DependentUpon>DeansDataGrid.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Admin\FacultiesDataGrid.xaml.cs">
+          <DependentUpon>FacultiesDataGrid.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\CursesPage.xaml.cs">
+          <DependentUpon>CursesPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\DeanCoursePage.xaml.cs">
+          <DependentUpon>DeanCoursePage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\DeanPage.xaml.cs">
+          <DependentUpon>DeanPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\DeanSubjects.xaml.cs">
+          <DependentUpon>DeanSubjects.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\GroupsPage.xaml.cs">
+          <DependentUpon>GroupsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\SpecialitiesPage.xaml.cs">
+          <DependentUpon>SpecialitiesPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\StudentsPage.xaml.cs">
+          <DependentUpon>StudentsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\SubjectPage.xaml.cs">
+          <DependentUpon>SubjectPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Dean\TeachersPage.xaml.cs">
+          <DependentUpon>TeachersPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentLecturesPage.xaml.cs">
+          <DependentUpon>StudentLecturesPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentPage.xaml.cs">
+          <DependentUpon>StudentPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentSubjectPage.xaml.cs">
+          <DependentUpon>StudentSubjectPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentSubjectsPage.xaml.cs">
+          <DependentUpon>StudentSubjectsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentTestPage.xaml.cs">
+          <DependentUpon>StudentTestPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Student\StudentTestsPage.xaml.cs">
+          <DependentUpon>StudentTestsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherLecturesPage.xaml.cs">
+          <DependentUpon>TeacherLecturesPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherPage.xaml.cs">
+          <DependentUpon>TeacherPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherSubjectPage.xaml.cs">
+          <DependentUpon>TeacherSubjectPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherSubjectsPage.xaml.cs">
+          <DependentUpon>TeacherSubjectsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherTest.xaml.cs">
+          <DependentUpon>TeacherTest.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\Pages\Teacher\TeacherTestsPage.xaml.cs">
+          <DependentUpon>TeacherTestsPage.xaml</DependentUpon>
+        </Compile>
+        <Compile Include="Views\UserControls\PasswordBoxUc.xaml.cs">
+          <DependentUpon>PasswordBoxUc.xaml</DependentUpon>
+        </Compile>
+        <Page Include="Resources\Icons\LightTheme.xaml" />
+        <Page Include="Resources\Icons\DarkTheme.xaml" />
+        <Page Include="Resources\Languages\English.xaml" />
+        <Page Include="Resources\Languages\Russian.xaml" />
+        <Page Include="Resources\Styles\Buttons.xaml" />
+        <Page Include="Resources\Styles\ListBox.xaml" />
+        <Page Include="Resources\Styles\TextBox.xaml" />
+        <Page Include="Resources\Styles\ToolBarImage.xaml" />
+        <Page Include="Resources\Themes\Dark.xaml" />
+        <Page Include="Resources\Themes\Light.xaml" />
+        <Page Include="Views\AuthorizationWindow.xaml" />
+        <Page Include="Views\MainWindow.xaml">
+          <Generator>MSBuild:Compile</Generator>
+          <SubType>Designer</SubType>
+        </Page>
+        <Page Include="Views\Pages\Admin\AdminPage.xaml" />
+        <Page Include="Views\Pages\Admin\AdminTeachersPage.xaml" />
+        <Page Include="Views\Pages\Admin\DataBaseDataGrid.xaml" />
+        <Page Include="Views\Pages\Admin\DeansDataGrid.xaml" />
+        <Page Include="Views\Pages\Admin\FacultiesDataGrid.xaml" />
+        <Page Include="Views\Pages\Dean\CursesPage.xaml" />
+        <Page Include="Views\Pages\Dean\DeanCoursePage.xaml" />
+        <Page Include="Views\Pages\Dean\DeanPage.xaml" />
+        <Page Include="Views\Pages\Dean\DeanSubjects.xaml" />
+        <Page Include="Views\Pages\Dean\GroupsPage.xaml" />
+        <Page Include="Views\Pages\Dean\SpecialitiesPage.xaml" />
+        <Page Include="Views\Pages\Dean\StudentsPage.xaml" />
+        <Page Include="Views\Pages\Dean\SubjectPage.xaml" />
+        <Page Include="Views\Pages\Dean\TeachersPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentLecturesPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentSubjectPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentSubjectsPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentTestPage.xaml" />
+        <Page Include="Views\Pages\Student\StudentTestsPage.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherLecturesPage.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherPage.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherSubjectPage.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherSubjectsPage.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherTest.xaml" />
+        <Page Include="Views\Pages\Teacher\TeacherTestsPage.xaml" />
+        <Page Include="Views\UserControls\PasswordBoxUc.xaml" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Include="Properties\Resources.Designer.cs">
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>Resources.resx</DependentUpon>
+        </Compile>
+        <EmbeddedResource Include="Migrations\202205031536559_AddImagePath.resx">
+          <DependentUpon>202205031536559_AddImagePath.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205052049591_AddManyToMany.resx">
+          <DependentUpon>202205052049591_AddManyToMany.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205072117010_AddId.resx">
+          <DependentUpon>202205072117010_AddId.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205072120567_fsd.resx">
+          <DependentUpon>202205072120567_fsd.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205080959306_GroupId.resx">
+          <DependentUpon>202205080959306_GroupId.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205081046117_AddId1.resx">
+          <DependentUpon>202205081046117_AddId1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205081447135_FacultyUser.resx">
+          <DependentUpon>202205081447135_FacultyUser.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205081917051_addmanitomani.resx">
+          <DependentUpon>202205081917051_addmanitomani.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205082032200_aES.resx">
+          <DependentUpon>202205082032200_aES.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205082044137_aeSfzd.resx">
+          <DependentUpon>202205082044137_aeSfzd.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205091656569_AddNumCursesToFaculty.resx">
+          <DependentUpon>202205091656569_AddNumCursesToFaculty.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205092010337_ManiToManiSubjectUser.resx">
+          <DependentUpon>202205092010337_ManiToManiSubjectUser.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205110835116_AddLectures.resx">
+          <DependentUpon>202205110835116_AddLectures.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205110849355_UpdateLecture.resx">
+          <DependentUpon>202205110849355_UpdateLecture.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205111406003_GuidIdTOFac.resx">
+          <DependentUpon>202205111406003_GuidIdTOFac.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205112240048_AddIdToSubjSpec.resx">
+          <DependentUpon>202205112240048_AddIdToSubjSpec.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205120034523_AddTestToBd.resx">
+          <DependentUpon>202205120034523_AddTestToBd.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Migrations\202205130047366_Test.resx">
+          <DependentUpon>202205130047366_Test.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+        </EmbeddedResource>
+    </ItemGroup>
+    <ItemGroup>
+        <None Include="App.config" />
+        <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\window-close_dark.png" />
+      <Resource Include="Icons\window-close_light.png" />
+      <Resource Include="Icons\window-maximize_dark.png" />
+      <Resource Include="Icons\window-maximize_light.png" />
+      <Resource Include="Icons\window-minimize_dark.png" />
+      <Resource Include="Icons\window-minimize_light.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\account-circle_dark.png" />
+      <Resource Include="Icons\account-circle_light.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\cog-outline_dark.png" />
+      <Resource Include="Icons\cog-outline_light.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\noAvatar.png" />
+      <Resource Include="Icons\window-minimize.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\themedark.png" />
+      <Resource Include="Icons\themelight.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\LangDark.png" />
+      <Resource Include="Icons\LangLight.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\arrow-left-Black.png" />
+      <Resource Include="Icons\arrow-left-White.png" />
+      <Resource Include="Icons\arrow-right-Black.png" />
+      <Resource Include="Icons\arrow-right-White.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\basketBlack.png" />
+      <Resource Include="Icons\basketWhite.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\LogoDark.png" />
+      <Resource Include="Icons\LogoWhite.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\Online-Learning-Education-PNG-Image-Background.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\arrow-down-Black.png" />
+      <Resource Include="Icons\arrow-down-White.png" />
+      <Resource Include="Icons\arrow-up-Black.png" />
+      <Resource Include="Icons\arrow-up-White.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\redoBlack.png" />
+      <Resource Include="Icons\redoWhite.png" />
+      <Resource Include="Icons\undoBlack.png" />
+      <Resource Include="Icons\undoWhite.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\group_Dark_Theme.png.png" />
+      <Resource Include="Icons\group_Light_Theme.png.png" />
+      <Resource Include="Icons\lecture_Dark_Theme.png" />
+      <Resource Include="Icons\lecture_Light_Theme.png" />
+      <Resource Include="Icons\subject_Dark_Theme.png" />
+      <Resource Include="Icons\subject_Light_Theme.png" />
+      <Resource Include="Icons\test_Dark_Theme.png" />
+    </ItemGroup>
+    <ItemGroup>
+      <Resource Include="Icons\test_Light_Theme.png" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <Import Project="..\packages\MaterialDesignThemes.4.5.0-ci156\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.5.0-ci156\build\MaterialDesignThemes.targets')" />
+    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+      <PropertyGroup>
+        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      </PropertyGroup>
+      <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.5.0-ci156\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.5.0-ci156\build\MaterialDesignThemes.targets'))" />
+      <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+      <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    </Target>
+    <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>

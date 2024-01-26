@@ -1,0 +1,122 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Student.StudentTestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:studentVm="clr-namespace:DistanceLearningSystem.ViewModels.StudentVM"
+      mc:Ignorable="d"
+      Title="StudentTestPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Page.DataContext>
+        <studentVm:StudentTestViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="InfoStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+    </Page.Resources>
+    <Grid  Background="{DynamicResource GridBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Margin="10,5,0,0" Background="{DynamicResource GridBrush}">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <TextBlock Text="{DynamicResource Title}" Height="40" Style="{StaticResource InfoStyle}" />
+                    <TextBlock Text="{Binding Path=Test.Name }" Style="{StaticResource InfoStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <TextBlock Text="{DynamicResource Description}" Height="50" Style="{StaticResource InfoStyle}" />
+                    <TextBlock Text="{Binding Path=Test.Description }" Style="{StaticResource InfoStyle}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <TextBlock Text="{DynamicResource QuestionCount}" Style="{StaticResource InfoStyle}" />
+                    <TextBlock Text="{Binding Path=QuestionCount}" Style="{StaticResource InfoStyle}" />
+                </StackPanel>
+                <StackPanel Height="5" Background="Beige" />
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Margin="5"
+                            Visibility="{Binding IsVisible}">
+                    <TextBlock Text="{DynamicResource Results}" HorizontalAlignment="Center"
+                               Style="{StaticResource InfoStyle}" />
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                        <TextBlock Text="{DynamicResource CorrectCount}" Style="{StaticResource InfoStyle}" />
+                        <TextBlock Text="{Binding Path=CorrectCount}" Style="{StaticResource InfoStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                        <TextBlock Text="{DynamicResource WrongCount}" Style="{StaticResource InfoStyle}" />
+                        <TextBlock Text="{Binding Path=WrongCount}" Style="{StaticResource InfoStyle}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                        <TextBlock Text="{DynamicResource Mark}" Style="{StaticResource InfoStyle}" />
+                        <TextBlock Text="{Binding Path=Result}" Style="{StaticResource InfoStyle}" />
+                    </StackPanel>
+                    <Button Content="{DynamicResource BackToTests}" Command="{Binding BackCommand}" Background="{DynamicResource ButtonBrush}"
+                            Foreground="{DynamicResource TextBrush}" HorizontalAlignment="Center" Margin="10"
+                            Width="190" FontSize="17" BorderBrush="{x:Null}" />
+                </StackPanel>
+            </StackPanel>
+            <Button Content="{DynamicResource Finish}" BorderBrush="{x:Null}" VerticalAlignment="Bottom"
+                    Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource TextBrush}"
+                    Margin="0,0,0,10" HorizontalAlignment="Center" Width="190" FontSize="17"
+                    Command="{Binding FinishTestCommand}"
+                    IsEnabled="{Binding ButtonEnabled,UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+        <ListBox Grid.Column="1" Background="{DynamicResource GridBrush}" x:Name="ListBox"
+                 ItemsSource="{Binding Path=Questions}" Margin="35,25,35,0"
+                 ItemContainerStyle="{StaticResource IgnoreMouseOverItem}" FontSize="20" BorderBrush="{x:Null}"
+                 Foreground="{DynamicResource TextBrush}" Style="{StaticResource List}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderThickness="6" BorderBrush="{DynamicResource BorderBrush}" CornerRadius="7">
+                        <StackPanel x:Name="ListItem" d:DataContext="{d:DesignInstance }"
+                                    Background="{DynamicResource ListboxBrush}"
+                                    IsEnabled="{Binding AnswersEnabled,UpdateSourceTrigger=PropertyChanged}"
+                                    Orientation="Vertical" Width="1160" >
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5" Text="{Binding Path=QuestionText}" FontSize="21" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <ListBox ItemsSource="{Binding Answers}" FontSize="22"
+                                             Foreground="{DynamicResource TextBrush}" 
+                                             ItemContainerStyle="{StaticResource IgnoreMouseOverItem}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel x:Name="ListItem2" Margin="0"
+                                                            d:DataContext="{d:DesignInstance }"
+                                                            Background="{Binding Path=Background,UpdateSourceTrigger=PropertyChanged}"
+                                                            Orientation="Horizontal" Width="1085" >
+                                                    <StackPanel.Style>
+                                                        <Style TargetType="StackPanel">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Opacity" Value="0.5" />
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </StackPanel.Style>
+                                                    <StackPanel.InputBindings>
+                                                        <MouseBinding
+                                                            Command="{Binding ElementName=ListBox, Path=DataContext.SelectAnswerCommand}"
+                                                            CommandParameter="{Binding}"
+                                                            MouseAction="LeftClick" />
+                                                    </StackPanel.InputBindings>
+                                                    <TextBlock Margin="5,0,5,0" Text="{Binding TextAnswer}"
+                                                               Width="1078" TextWrapping="Wrap" FontSize="20" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</Page>

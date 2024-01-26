@@ -1,0 +1,37 @@
+.container {
+    height: inherit;
+    width: inherit;
+}
+
+.cursorDefault {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    will-change: transform;
+    transform: translate(-999px, -999px);
+    pointer-events: none;
+
+    svg {
+        will-change: transform;
+        animation: rotateAnimation 1.5s linear infinite;
+    }
+}
+
+@keyframes rotateAnimation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.cursorWaiting {
+    visibility: visible;
+}
+
+.nocursor>div>div {
+    cursor: none !important;
+}

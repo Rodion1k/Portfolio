@@ -1,0 +1,181 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Admin.AdminTeachersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:adminVm="clr-namespace:DistanceLearningSystem.ViewModels.AdminVM"
+      mc:Ignorable="d"
+      Title="AdminTeachersPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Page.DataContext>
+        <adminVm:AdminTeachersViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="ListTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="FontSize" Value="17" />
+        </Style>
+    </Page.Resources>
+    <Grid Background="{DynamicResource GridBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="0.5*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="{DynamicResource GridBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="{DynamicResource AllTeachers}"
+                       Foreground="{DynamicResource TextBrush}" FontSize="23"
+                       HorizontalAlignment="Center" FontWeight="Bold" />
+            <Grid Grid.Row="1">
+                <TextBox Text="{Binding AllSearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         FontSize="16" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" Width="300" Height="34" Style="{StaticResource SearchTextBox}" />
+            </Grid>
+            <ListBox Grid.Row="2" Background="Transparent" x:Name="ListBox"
+                     BorderBrush="{x:Null}"
+                     ItemsSource="{Binding Path=UsersList}"
+                     Style="{StaticResource List}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }"
+                                    Background="Transparent"
+                                    Orientation="Vertical" Width="280" Height="310">
+                            <StackPanel.InputBindings>
+                                <MouseBinding
+                                    Command="{Binding ElementName=ListBox, Path=DataContext.AddToFacultyCommand}"
+                                    CommandParameter="{Binding}"
+                                    MouseAction="LeftDoubleClick" />
+                            </StackPanel.InputBindings>
+                            <Ellipse Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                     Height="130">
+                                <Ellipse.Fill>
+                                    <ImageBrush
+                                        ImageSource="{Binding ImagePath}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Name}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Name}" Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Gender}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Gender}" Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Email}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=(UserLogin).Email}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Role}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Role}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <StackPanel Grid.Column="1" VerticalAlignment="Stretch" Background="{DynamicResource ButtonBrush}" />
+        <Grid Grid.Column="2" Background="{DynamicResource ListboxBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" VerticalAlignment="Center" Text="{DynamicResource FacultyTeachers}"
+                       Foreground="{DynamicResource TextBrush}" FontSize="23"
+                       HorizontalAlignment="Center" FontWeight="Bold" />
+            <Grid Grid.Row="1">
+                <TextBox Text="{Binding FacultySearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         FontSize="16" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" Width="300" Height="34" Style="{StaticResource SearchTextBox}" />
+            </Grid>
+            <ListBox Grid.Row="2" Background="Transparent" x:Name="ListBox2"
+                     BorderBrush="{x:Null}"
+                     ItemsSource="{Binding Path=FacultyUsersList}"
+                     Style="{StaticResource List}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }"
+                                    Background="Transparent"
+                                    Orientation="Vertical" Width="280" Height="310">
+                            <StackPanel.InputBindings>
+                                <MouseBinding
+                                    Command="{Binding ElementName=ListBox2, Path=DataContext.DeleteFromFacultyCommand}"
+                                    CommandParameter="{Binding}"
+                                    MouseAction="LeftDoubleClick" />
+                            </StackPanel.InputBindings>
+                            <Ellipse Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                     Height="130">
+                                <Ellipse.Fill>
+                                    <ImageBrush
+                                        ImageSource="{Binding ImagePath}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Name}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Name}" Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Gender}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Gender}" Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <!-- <StackPanel Orientation="Horizontal"> -->
+                                <!--     <TextBlock Text="{DynamicResource Email}" -->
+                                <!--                Style="{StaticResource ListTextBlockStyle}" /> -->
+                                <!--     <TextBlock Text="{Binding Path=(UserLogin).Email}" -->
+                                <!--                Style="{StaticResource ListTextBlockStyle}" /> -->
+                                <!-- </StackPanel> -->
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Role}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Role}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+    </Grid>
+</Page>

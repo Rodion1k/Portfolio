@@ -1,0 +1,25 @@
+.train-order-item-main {
+    /*display: grid;*/
+    /*grid-template-rows: 1fr 5fr;*/
+}
+
+.train-order-item-container {
+    display: grid;
+    grid-template-columns: 3fr 3fr 1fr;
+    grid-column-gap: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.train-order-item-firstColumn {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-self: flex-start;
+}
+.train-order-item-rowDetails{
+    font-size: 1.1em;
+    font-weight: bold;
+    text-align: left;
+    align-self: center;
+    height: 300px;
+}

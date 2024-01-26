@@ -1,0 +1,36 @@
+.seat-container{
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    width: 30px;
+    height: 30px;
+    margin: 3px;
+
+}
+
+.seat-container:hover{
+    cursor: pointer;
+    background-color: #23918d;
+}
+
+.pre-selected{
+    background-color: #054240;
+}
+
+.available{
+    background-color: #1c72f3;
+}
+
+.not-available{
+    background-color: #1c72f3;
+    opacity: 0.5;
+    pointer-events: none;
+}
+.seat-label{
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 30px;
+}

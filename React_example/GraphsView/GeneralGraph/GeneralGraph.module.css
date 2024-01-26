@@ -1,0 +1,26 @@
+.echart {
+    height: 96% !important;
+    width: 100%;
+}
+
+.buttonsContainer {
+    position: relative;
+    left: 102px;
+    top: 27px;
+    width: fit-content;
+    z-index: 99;
+}
+
+.buttonsContainerDisabled{
+    width: inherit;
+}
+
+.noDataContainer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+}

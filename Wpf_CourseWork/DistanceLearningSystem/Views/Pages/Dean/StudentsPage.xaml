@@ -1,0 +1,198 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Dean.StudentsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:deanVm="clr-namespace:DistanceLearningSystem.ViewModels.DeanVM"
+      xmlns:validation="clr-namespace:DistanceLearningSystem.Validation"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d"
+      Title="StudentsPage" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+    <Page.DataContext>
+        <deanVm:DeanStudentsViewModel />
+    </Page.DataContext>
+    <Page.Resources>
+        <Style x:Key="ListTextBlockStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="3" />
+        </Style>
+    </Page.Resources>
+    <Grid Background="{DynamicResource GridBrush}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <TextBox Text="{Binding SearchText,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                         FontSize="22" Foreground="{DynamicResource TextBrush}" VerticalAlignment="Center"
+                         HorizontalAlignment="Center" Width="400" Height="44" Style="{StaticResource SearchTextBox}" />
+            </Grid>
+            <ListBox Grid.Row="1" x:Name="ListBox" Background="{DynamicResource GridBrush}"
+                     ItemsSource="{Binding Path=CustomUsersList}"
+                     Style="{StaticResource List}" BorderBrush="{x:Null}" FontSize="21" Foreground="{DynamicResource TextBrush}"
+                     Margin="0,0,30,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel x:Name="ListItem" Margin="5" d:DataContext="{d:DesignInstance }"
+                                    Background="{Binding Path=BackgroundBrush,UpdateSourceTrigger=PropertyChanged}"
+                                    Orientation="Vertical" Width="400" Height="370">
+                            <StackPanel.InputBindings>
+                                <MouseBinding
+                                    Command="{Binding ElementName=ListBox, Path=DataContext.SelectItemCommand}"
+                                    CommandParameter="{Binding}"
+                                    MouseAction="LeftClick" />
+                            </StackPanel.InputBindings>
+                            <Ellipse Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                     Height="130">
+                                <Ellipse.Fill>
+                                    <ImageBrush
+                                        ImageSource="{Binding ImagePath}" />
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Name}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Name}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource SurName}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=SurName}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Patronymic}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Patronymic}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Gender}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Gender}" TextWrapping="Wrap" Width="200" Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Email}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Path=Email}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{DynamicResource Role}"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                    <TextBlock Text="{Binding Role}" TextWrapping="Wrap" Width="200"
+                                               Style="{StaticResource ListTextBlockStyle}" />
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+            <StackPanel Grid.Row="2" Height="50" Orientation="Horizontal" VerticalAlignment="Bottom"
+                        HorizontalAlignment="Stretch">
+                <Button Height="50" HorizontalAlignment="Left" Background="Transparent" BorderBrush="{x:Null}"
+                        VerticalAlignment="Top"
+                        Command="{Binding DeleteUserCommand}">
+                    <Button.Content>
+                        <Image Source="{DynamicResource BasketIcon}" Width="40" Height="40" />
+                    </Button.Content>
+                </Button>
+                <TextBlock Margin="5" FontSize="30" VerticalAlignment="Center" Foreground="{DynamicResource TextBrush}"
+                           Text="{Binding SelectedItemsCount, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" />
+            </StackPanel>
+        </Grid>
+        <Grid VerticalAlignment="Bottom" x:Name="Grid" HorizontalAlignment="Right" Width="30" Height="370"
+              Background="{DynamicResource GridBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Click="UIElement_OnMouseLeftButtonDown" Background="{DynamicResource ButtonBrush}"
+                    BorderBrush="{x:Null}" Height="370" Padding="0" >
+                <Grid HorizontalAlignment="Left">
+                    <Image x:Name="DropImage" HorizontalAlignment="Left" Margin="5" Height="20" Width="30"
+                           Source="{DynamicResource ArrowLeftIcon}" />
+                </Grid>
+            </Button>
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="0,0,0,35"
+                        Width="300" Height="360" HorizontalAlignment="Left">
+                <TextBox x:Name="NameTextBox" Margin="10" HorizontalAlignment="Left" Width="245"
+                         FontSize="16" TextChanged="TextBoxBase_OnTextChanged" MaxLength="20"
+                         materialDesign:HintAssist.Hint="{DynamicResource NameHint}"
+                         Foreground="{DynamicResource TextBrush}">
+                    <TextBox.Text>
+                        <Binding Path="UserName" ValidatesOnDataErrors="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validation:ValidationInitialsRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox x:Name="SurNameTextBox" Margin="10" HorizontalAlignment="Left" Width="245" Foreground="{DynamicResource TextBrush}"
+                         FontSize="16" TextChanged="TextBoxBase_OnTextChanged" MaxLength="20"
+                         materialDesign:HintAssist.Hint="{DynamicResource SurnameHint}">
+                    <TextBox.Text>
+                        <Binding Path="UserSurName" ValidatesOnDataErrors="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validation:ValidationInitialsRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox x:Name="PatronymicTextBox" Margin="10" HorizontalAlignment="Left" Width="245" Foreground="{DynamicResource TextBrush}"
+                         FontSize="16" TextChanged="TextBoxBase_OnTextChanged" MaxLength="20"
+                         materialDesign:HintAssist.Hint="{DynamicResource PatronymicHint}">
+                    <TextBox.Text>
+                        <Binding Path="UserPatronymic" ValidatesOnDataErrors="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validation:ValidationInitialsRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <ComboBox Margin="10" HorizontalAlignment="Left" Width="245" Foreground="{DynamicResource TextBrush}"
+                          FontSize="16" Background="{DynamicResource GridBrush}"
+                          materialDesign:HintAssist.Hint="{DynamicResource GenderHint}"
+                           SelectedItem="{Binding UserGender}" >
+                    <ComboBoxItem Background="{DynamicResource ListboxBrush}" Content="{DynamicResource GenderMan}"/>
+                    <ComboBoxItem Background="{DynamicResource ListboxBrush}" Content="{DynamicResource GenderFemale}"/>
+                </ComboBox>
+                <TextBox x:Name="EmailTextBox" Margin="10" HorizontalAlignment="Left" Width="245" Foreground="{DynamicResource TextBrush}"
+                         FontSize="16" TextChanged="TextBoxBase_OnTextChanged" MaxLength="30"
+                         materialDesign:HintAssist.Hint="{DynamicResource EmailHint}">
+                    <TextBox.Text>
+                        <Binding Path="UserEmail" ValidatesOnDataErrors="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validation:ValidationEmailRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox x:Name="PasswordTextBox" Margin="10" HorizontalAlignment="Left" Width="245" Foreground="{DynamicResource TextBrush}"
+                         FontSize="16" TextChanged="TextBoxBase_OnTextChanged" MaxLength="25"
+                         materialDesign:HintAssist.Hint="{DynamicResource Password}">
+                    <TextBox.Text>
+                        <Binding Path="UserPassword" ValidatesOnDataErrors="True"
+                                 UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <validation:ValidationPasswordRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+            </StackPanel>
+            <Button Grid.Column="1" x:Name="RegisterButton" IsEnabled="False" FontSize="17" Width="190" Margin="12"
+                    Background="{DynamicResource ButtonBrush}"
+                    BorderBrush="{x:Null}" Foreground="{DynamicResource TextBrush}"
+                    VerticalAlignment="Bottom" Content="{DynamicResource Register}"
+                    Command="{Binding AddUser}" />
+        </Grid>
+    </Grid>
+</Page>

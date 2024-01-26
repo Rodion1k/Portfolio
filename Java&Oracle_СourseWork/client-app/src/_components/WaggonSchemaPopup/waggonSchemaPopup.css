@@ -1,0 +1,72 @@
+.seatChart-cell {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #000;
+    background-color: #e86161;
+    display: inline-block;
+    margin: 2px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.seatChart-spacer {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    opacity: 0;
+    margin: 2px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content{
+    width: 100vw!important;
+}
+
+.buy-button{
+    width: 30%;
+    height: 50px;
+    background-color: #1c72f3;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.buy-button-disabled{
+    /*disabled*/
+    background-color: #1c72f3;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.price-div{
+    width: 100%;
+    height: 50px;
+    color: #0b1946;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.schema-footer-container{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

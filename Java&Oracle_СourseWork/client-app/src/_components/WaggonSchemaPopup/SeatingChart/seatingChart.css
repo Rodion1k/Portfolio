@@ -1,0 +1,53 @@
+.seating-chart-container-main {
+    position: relative;
+    width: 900px;
+    height: 176px;
+    min-height: 175px;
+}
+
+.seating-chart-container {
+    position: relative;
+    width: 900px;
+    height: 175px;
+    min-height: 175px;
+    border-radius: 20px;
+    background-color: #fff;
+    border: 1px solid #0c0c0c;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+
+.seating-chart-container-firstColumn {
+    display: grid;
+    row-gap: 45px;
+}
+
+.seating-chart-container-firstColumn-row {
+    border-right: 1px solid #0c0c0c;
+}
+
+.seating-chart-container-secondColumn {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 45px;
+}
+
+.seating-chart-container-secondColumn-row {
+    border-left: 1px solid #0c0c0c;
+}
+
+.seating-chart-seats-container{
+    position: relative;
+    height: 90%;
+    min-height: 175px;
+    max-height: 175px;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 45px;
+    padding: 0 10px 50px 20px;
+}
+
+.seating-chart-seats-firstRow{
+    min-height: 55px;
+    max-height: 55px;
+}

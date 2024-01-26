@@ -1,0 +1,62 @@
+<Page x:Class="DistanceLearningSystem.Views.Pages.Student.StudentSubjectPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:studentVm="clr-namespace:DistanceLearningSystem.ViewModels.StudentVM"
+      mc:Ignorable="d"
+      Title="StudentSubjectPage" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Page.DataContext>
+        <studentVm:StudentSubjectViewModel/>
+    </Page.DataContext>
+ <Page.Resources>
+        <Style x:Key="SubjInfoStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Foreground" Value="{DynamicResource TextBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Width" Value="280" />
+        </Style>
+    </Page.Resources>
+    <Grid  Background="{DynamicResource GridBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" Margin="0,0,2,0" VerticalAlignment="Stretch" Background="{DynamicResource ButtonBrush}"/>
+        <Grid Grid.Column="0">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Ellipse Width="130" VerticalAlignment="Center" HorizontalAlignment="Center"
+                         Height="130">
+                    <Ellipse.Fill>
+                        <ImageBrush
+                            ImageSource="{DynamicResource SubjectIcon}" />
+                    </Ellipse.Fill>
+                </Ellipse>
+                <TextBlock Style="{StaticResource SubjInfoStyle}" Text="{Binding Path=Subject.Name }" />
+                <TextBlock Style="{StaticResource SubjInfoStyle}" Text="{Binding Path=Subject.FullName }" />
+         
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Column="2" Margin="5,0,0,0" Background="{DynamicResource GridBrush}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="Transparent">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Background="{DynamicResource ButtonBrush}" VerticalAlignment="Center" BorderBrush="{x:Null}"
+                            Foreground="{DynamicResource TextBrush}" FontSize="20" FontStyle="Italic"
+                            Content="{DynamicResource Lectures}" Command="{Binding OpenLecturesCommand}" />
+                    <Button Content="{DynamicResource Tests}" VerticalAlignment="Center" Background="{DynamicResource ButtonBrush}"
+                            Foreground="{DynamicResource TextBrush}" FontSize="20" FontStyle="Italic"
+                            BorderBrush="{x:Null}" Command="{Binding OpenTestsCommand}" />
+                </StackPanel>
+            </Grid>
+            <Frame Grid.Row="1" x:Name="Frame" />
+        </Grid>
+    </Grid>
+</Page>

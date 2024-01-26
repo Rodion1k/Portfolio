@@ -1,0 +1,3 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=RESOURCES_005CICONS_005CICONS_005CWINDOW_002DCLOSE_005FDARK_002EPNG/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=RESOURCES_005CICONS_005CICONS_005CWINDOW_002DCLOSE_005FDARK_002EPNG/@EntryIndexedValue">Resources\Icons\Icons\window-close_dark.png</s:String></wpf:ResourceDictionary>

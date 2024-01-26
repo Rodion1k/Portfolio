@@ -1,0 +1,42 @@
+.main-container{
+    display: grid;
+    /*2 columns*/
+    grid-template-columns: 3fr 1fr;
+}
+.first-column{
+    display: grid;
+    /*2 rows width*/
+    grid-template-rows: 1fr 1fr;
+}
+.second-column{
+    display: grid;
+    /* border on the left with opacity and margin 2*/
+    border-left: 1px solid rgba(0,0,0,0.3);
+    grid-template-rows: 1fr 1fr;
+}
+.select-button{
+    margin: 2px;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.train-info-container{
+    display: grid;
+    /*2 columns*/
+    grid-template-columns: 2fr 2fr 1fr;
+}
+.train-info-column{
+    display: grid;
+    /*2 rows*/
+    grid-template-rows: 1fr 1fr;
+}
+.train-name{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+.route-name{
+    margin-left: 50em;
+    font-size: 0.8em;
+}
